@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: churn-service
+
+app:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/postgres?currentSchema=churn
+    username: postgres
+    password: 123456
