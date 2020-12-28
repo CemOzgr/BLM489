@@ -36,9 +36,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors()
                 .configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues())
                 .and()
-                .authorizeRequests()
-                .antMatchers("/api/**").hasRole("ADMIN")
-                .antMatchers("/api/").permitAll()
-                .and().formLogin();
+                    .authorizeRequests()
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/api/**").hasRole("ADMIN")
+                .and()
+                    .formLogin()
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                .and()
+                .csrf().disable();
     }
 }

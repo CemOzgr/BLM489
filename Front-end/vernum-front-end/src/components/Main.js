@@ -1,13 +1,16 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import Sidebar from './Sidebar'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Dashboard from './Dashboard'
 
-const Main = () => {
+const Main = props => {
+
   return (
     <div className="main-panel">
       <Navbar />
+      <Sidebar />
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
           <Redirect from='*' to='/dashboard' />

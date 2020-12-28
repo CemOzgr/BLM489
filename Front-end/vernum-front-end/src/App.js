@@ -1,15 +1,18 @@
 import React from "react"
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Sidebar from './components/Sidebar'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Main from './components/Main'
+import Login from "./login/Login"
 
 
 const App = () => {
   return (
     <div className="wrapper">
       <Router>
-        <Sidebar />
-        <Route path='/' component={Main}/>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route path='/' component={Main} />
+        </Switch>
+        
       </Router>
     </div>
   )
