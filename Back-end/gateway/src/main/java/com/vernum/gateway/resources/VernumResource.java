@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping("/")
 public class VernumResource {
@@ -18,13 +18,11 @@ public class VernumResource {
         this.restTemplate = restTemplate;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public int logged() {
         return HttpStatus.NO_CONTENT.value();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/games/sales/{platform}/best-sellers")
     public ResponseModel bestSellers(@PathVariable String platform,
                                      @RequestParam(defaultValue = "global") String region) {
@@ -34,7 +32,6 @@ public class VernumResource {
 
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/games/sales/{platform}/top-publishers")
     private ResponseModel bestPublishers(@PathVariable String platform) {
         String uri = "http://games-service/games/sales/{platform}/top-publishers";
@@ -42,7 +39,6 @@ public class VernumResource {
         return restTemplate.getForObject(uri, ResponseModel.class, platform);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/games/sales/{platform}/years")
     private ResponseModel yearSales(@PathVariable String platform,
                                     @RequestParam(required = false) String genre) {
@@ -51,23 +47,20 @@ public class VernumResource {
         return restTemplate.getForObject(uri, ResponseModel.class, platform, genre);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/games/sales/all/top-publishers/{publisher}")
     private ResponseModel publisherRevenue(@PathVariable String publisher) {
-        String uri = "http://games-service/games/sales/top-publisher/{publisher}";
+        String uri = "http://games-service/games/sales/all/top-publishers/{publisher}";
 
         return restTemplate.getForObject(uri, ResponseModel.class, publisher);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/games/market/{platform}/genres")
     public ResponseModel genres(@PathVariable String platform) {
-        String uri = "http://games-service/games/sales/{platform}/genres";
+        String uri = "http://games-service/games/market/{platform}/genres";
 
         return restTemplate.getForObject(uri, ResponseModel.class, platform);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/churn/customers/genders")
     public ResponseModel customerGenderProfile(@RequestParam(required = false) String city) {
 
@@ -79,8 +72,7 @@ public class VernumResource {
         return restTemplate.getForObject(uri, ResponseModel.class, city);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping({"api/churn/transactions/years","churn/transactions/years/{year}"})
+    @GetMapping({"api/churn/transactions/years","api/churn/transactions/years/{year}"})
     public ResponseModel transactions(@PathVariable(required = false) String year) {
         String uri = "http://churn-service/churn/transactions/years";
         if(year != null) {
@@ -90,7 +82,6 @@ public class VernumResource {
         return restTemplate.getForObject(uri, ResponseModel.class, year);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("api/churn/transactions/recent")
     public ResponseModel recentTransactions(@RequestParam String interval,
                                             @RequestParam(defaultValue = "0") String detailed) {

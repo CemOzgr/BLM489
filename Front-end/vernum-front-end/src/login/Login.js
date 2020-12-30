@@ -1,6 +1,5 @@
-import React, { useState } from "react"
+import React from "react"
 import { Form, FormGroup, Button } from "react-bootstrap"
-import { useHistory } from "react-router-dom";
 import {login} from '../api'
 import './login.css'
 
@@ -22,10 +21,9 @@ class Login extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     const {data} = await login(this.state.username, this.state.password)
+
     if(data === 204)
       this.props.history.push('/dashboard')
-
-    
   }
 
   render() {

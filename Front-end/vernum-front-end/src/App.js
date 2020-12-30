@@ -9,7 +9,7 @@ const App = () => {
     <div className="wrapper">
       <Router>
         <Switch>
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/loginpage' component={Login} />
           <Route path='/' component={Main} />
         </Switch>
         

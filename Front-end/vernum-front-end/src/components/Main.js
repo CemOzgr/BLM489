@@ -2,8 +2,9 @@ import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Sidebar from './Sidebar'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Dashboard from './Dashboard'
+import { GameComponent } from './GameComponent'
 
 const Main = props => {
 
@@ -11,10 +12,10 @@ const Main = props => {
     <div className="main-panel">
       <Navbar />
       <Sidebar />
-        <Switch>
-          <Route path="/dashboard" component={Dashboard} />
-          <Redirect from='*' to='/dashboard' />
-        </Switch>
+      <Switch>
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/games" component={GameComponent} />
+      </Switch>
       <Footer />
     </div>
   )

@@ -39,13 +39,13 @@ public class ChurnDataAccess {
         String sql;
 
         if(year == null) {
-            sql = "SELECT date_part('year', transaction_date) as t_year, COUNT(*) as transactions " +
+            sql = "SELECT date_part('year', transaction_date) as t_date, COUNT(*) as transactions " +
                     "FROM transactions " +
                     "GROUP BY date_part('year', transaction_date) " +
                     "ORDER BY date_part('year', transaction_date)";
             return new ResponseModel(jdbcTemplate.queryForList(sql));
         } else {
-            sql = "SELECT date_part('month',transaction_date) as t_month, COUNT(*) as transactions " +
+            sql = "SELECT date_part('month',transaction_date) as t_date, COUNT(*) as transactions " +
                     "FROM transactions " +
                     "WHERE date_part('year',transaction_date) = ? " +
                     "GROUP BY date_part('month',transaction_date) " +
@@ -61,7 +61,7 @@ public class ChurnDataAccess {
         switch(interval) {
             case "today":
                 if(detailed.equals("0")) {
-                    sql = "SELECT COUNT(*) as transactions, COUNT(*)  " +
+                    sql = "SELECT COUNT(*) as transactions " +
                             "FROM transactions " +
                             "WHERE DATE_PART('doy', transaction_date)= ? " +
                             "AND DATE_PART('year', transaction_date)= ?" +

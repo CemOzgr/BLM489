@@ -14,13 +14,13 @@ const Sidebar = () => {
           <li className="nav-item">
             <NavLink className="nav-link" to='/dashboard'>
               <i className="nc-icon nc-chart-pie-35"></i>
-              <p>Dashboard</p>
+              <p>Churn</p>
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to='/profile'>
+            <NavLink className="nav-link" to='/games'>
               <i className="nc-icon nc-circle-09" ></i>
-              <p>User Profile</p>
+              <p>Game Sales</p>
             </NavLink>
           </li>
         </ul>
